@@ -10,24 +10,28 @@ t_min = 0
 t_max = 5
 delta_t = (0.01, 0.1, 1.0)
 
+
 def function(t):
     return np.exp(l * t)
 
+
 ############# Metody jawne #############
-def euler(y, delta, n):
-    y.append(y[n] + delta * l * y[n])
+def euler(y, delta, n_euler):
+    y.append(y[n_euler] + delta * l * y[n_euler])
 
-def RK2(y, delta, n):
-    k1= l * y[n]
-    k2 = l * (y[n] + delta * k1)
-    y.append(y[n] + delta * (k1 + k2) / 2)
 
-def RK4(y, delta, n):
-    k1 = l * y[n]
-    k2 = l * (y[n] + delta / 2 * k1)
-    k3 = l * (y[n] + delta / 2 * k2)
-    k4 = l * (y[n] + delta * k3)
-    y.append(y[n] + delta / 6 * (k1 + 2 * k2 + 2 * k3 + k4))
+def rk2(y, delta, n_rk2):
+    k1 = l * y[n_rk2]
+    k2 = l * (y[n_rk2] + delta * k1)
+    y.append(y[n_rk2] + delta * (k1 + k2) / 2)
+
+
+def rk4(y, delta, n_rk4):
+    k1 = l * y[n_rk4]
+    k2 = l * (y[n_rk4] + delta / 2 * k1)
+    k3 = l * (y[n_rk4] + delta / 2 * k2)
+    k4 = l * (y[n_rk4] + delta * k3)
+    y.append(y[n_rk4] + delta / 6 * (k1 + 2 * k2 + 2 * k3 + k4))
 
 
 ############# Funckja rozwiązująca #############
@@ -81,9 +85,8 @@ def solve(file_name, method_name, recipe):
 
 ############## Wywołanie funkcji ##############
 solve('Euler', 'Eulera', euler)
-solve('RK2', 'RK2 (trapezów)', RK2)
-solve('RK4', 'RK4', RK4)
-
+solve('RK2', 'RK2 (trapezów)', rk2)
+solve('RK4', 'RK4', rk4)
 
 ################# RRZ 2. RZĘDU	###################
 
