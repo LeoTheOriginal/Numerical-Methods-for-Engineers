@@ -2,7 +2,6 @@ import os
 import numpy as np
 from numba import njit
 
-# Parametry zgodne z zadaniem
 NX = 400
 NY = 90
 I1 = 200
